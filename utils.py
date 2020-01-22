@@ -1,4 +1,4 @@
-def load_data(nr_of_elements=1.0):
+def load_data(nr_of_elements=60000):
     """
     returns a specified amount of data
     """
@@ -9,7 +9,8 @@ def load_data(nr_of_elements=1.0):
 
     (x_train, y_train), (x_test, y_test) = mnist.load_data()
 
-    x_train, _, y_train, _ = train_test_split(x_train, y_train, train_size = nr_of_elements, random_state = seed_number)
+    if nr_of_elements != 60000:
+        x_train, _, y_train, _ = train_test_split(x_train, y_train, train_size = nr_of_elements, random_state = seed_number)
 
     return (x_train, y_train), (x_test, y_test)
 

@@ -73,7 +73,7 @@ def mnist_cnn(nr_of_labeled_examples=1.0, verbose=0):
 
     score = model.evaluate(x_test, y_test, verbose=0)
     
-    if verbose == 1:
+    if verbose >= 1:
         print('Test loss:', score[0])
         print('Test accuracy:', score[1]) # TODO: change print, ? validation accuracy ?
 

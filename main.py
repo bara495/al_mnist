@@ -1,5 +1,6 @@
 from mnist_cnn import mnist_cnn
 
-for i in [100, 1000, 10000, None]:
+# 60000 is the whole dataset, don't exceed that number
+for i in [100, 1000, 10000, 60000]:
     score = mnist_cnn(i)
-    print(str(60000 if i==None else i), ' examples used, val_acc = ', score[1])
+    print(i, ' examples used, val_acc = ', score[1])
