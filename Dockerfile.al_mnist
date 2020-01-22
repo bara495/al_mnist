@@ -1,0 +1,4 @@
+FROM td_ml_edge_tmp
+
+RUN pip install --upgrade pip
+RUN pip install -U --user keras
