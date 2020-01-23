@@ -5,7 +5,8 @@ from keras.layers import Dense, Dropout, Flatten
 from keras.layers import Conv2D, MaxPooling2D
 from keras import backend as K
 from keras.callbacks import EarlyStopping
-from utils import load_data
+from keras.datasets import mnist
+from sklearn.model_selection import train_test_split
 
 
 '''
@@ -45,23 +46,9 @@ def mnist_cnn(nr_of_labeled_examples=1.0, verbose=0):
     y_train = keras.utils.to_categorical(y_train, num_classes)
     y_test = keras.utils.to_categorical(y_test, num_classes)
 
-    model = Sequential()
-    model.add(Conv2D(32, kernel_size=(3, 3),
-                    activation='relu',
-                    input_shape=input_shape))
-    model.add(Conv2D(64, (3, 3), activation='relu'))
-    model.add(MaxPooling2D(pool_size=(2, 2)))
-    model.add(Dropout(0.25))
-    model.add(Flatten())
-    model.add(Dense(128, activation='relu'))
-    model.add(Dropout(0.5))
-    model.add(Dense(num_classes, activation='softmax'))
-
     es = EarlyStopping(monitor='val_accuracy', mode='max', min_delta=0.0001, patience=20, verbose=1, restore_best_weights=True)
 
-    model.compile(loss=keras.losses.categorical_crossentropy,
-                optimizer=keras.optimizers.Adam(),
-                metrics=['accuracy'])
+    model = create_model(input_shape)
 
     model.fit(x_train, y_train,
             batch_size=batch_size,
@@ -78,14 +65,31 @@ def mnist_cnn(nr_of_labeled_examples=1.0, verbose=0):
 
     return (score)
 
+def create_model(input_shape):
+
+    model = Sequential()
+    model.add(Conv2D(32, kernel_size=(3, 3),
+                    activation='relu',
+                    input_shape=input_shape))
+    model.add(Conv2D(64, (3, 3), activation='relu'))
+    model.add(MaxPooling2D(pool_size=(2, 2)))
+    model.add(Dropout(0.25))
+    model.add(Flatten())
+    model.add(Dense(128, activation='relu'))
+    model.add(Dropout(0.5))
+    model.add(Dense(10, activation='softmax'))
+
+    model.compile(loss=keras.losses.categorical_crossentropy,
+                optimizer=keras.optimizers.Adam(),
+                metrics=['accuracy'])
+
+    return model
+
 
 def load_data(nr_of_elements=60000):
     """
     returns a specified amount of data
     """
-    from keras.datasets import mnist
-    from sklearn.model_selection import train_test_split
-
     seed_number = None # TODO: verify that it works 
 
     (x_train, y_train), (x_test, y_test) = mnist.load_data()
