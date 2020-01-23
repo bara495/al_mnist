@@ -1,4 +1,4 @@
 FROM td_ml_edge_tmp
 
 RUN pip3 install --upgrade pip --user
-RUN sudo pip3 install --user keras
+RUN sudo pip3 install --user keras modAL
