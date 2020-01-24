@@ -1,0 +1,34 @@
+Random sampling - Training on 100 samples
+	Val. accuracy:  0.80420
+uncertainty_sampling - # trained samples    - Val. accuracy
+                            20            		 0.43790
+                            30            		 0.49230
+                            40            		 0.55860
+                            50            		 0.57460
+                            60            		 0.60790
+                            70            		 0.63450
+                            80            		 0.67290
+                            90            		 0.70140
+                            100            		 0.70810
+entropy_sampling - # trained samples    - Val. accuracy
+                            20            		 0.33850
+                            30            		 0.40210
+                            40            		 0.46010
+                            50            		 0.47910
+                            60            		 0.56880
+                            70            		 0.66980
+                            80            		 0.62870
+                            90            		 0.69290
+                            100            		 0.64670
+margin_sampling - # trained samples    - Val. accuracy
+                            20            		 0.49230
+                            30            		 0.58570
+                            40            		 0.63460
+                            50            		 0.71670
+                            60            		 0.71900
+                            70            		 0.78500
+                            80            		 0.81090
+                            90            		 0.82670
+                            100            		 0.85800
+
+
